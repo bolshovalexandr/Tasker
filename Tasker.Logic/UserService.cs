@@ -1,17 +1,23 @@
-﻿using Tasker.Logic.Models.User;
+﻿using Tasker.DAL.Repositories.Abstract;
+using Tasker.Logic.Models.User;
 
 namespace Tasker.Logic
 {
     public class UserService { 
 
-        public UserService() { }
+        private IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository) { 
+            _userRepository = userRepository;
+        }
+
 
         public UserDTO Get (int id)
         {
+            var user = _userRepository.Get(id);
             var userDTO = new UserDTO()
             {
-                Id = id,
-                Name = "Litest" + new Random(100).Next().ToString(),
+                Id = user.Id,
+                Name = user.Name,
                 Email = "li-service@li.li",
                 Surname = "Li"
             };

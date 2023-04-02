@@ -1,3 +1,5 @@
+using Tasker.DAL.Repositories;
+using Tasker.DAL.Repositories.Abstract;
 using Tasker.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
